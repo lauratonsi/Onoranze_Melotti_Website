@@ -2,6 +2,10 @@
 
 🇮🇹 [Italiano](#-italiano) · 🇬🇧 [English](#-english)
 
+![Homepage — Onoranze Funebri Melotti](screenshots/home.png)
+
+![Sezione Necrologi / Obituaries section](screenshots/necrologi.png)
+
 ---
 
 ## 🇮🇹 Italiano
