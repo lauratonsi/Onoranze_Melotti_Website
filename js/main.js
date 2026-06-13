@@ -46,24 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('in'));
   }
 
-  /* ── Form contatti (invio AJAX a Netlify Forms) ── */
+  /* ── Form contatti (DEMO: nessun invio reale, mostra la conferma) ── */
   const form = document.getElementById('contact-form');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.disabled = true; btn.textContent = 'Invio in corso…'; }
-      const body = new URLSearchParams(new FormData(form)).toString();
-      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
-        .then(() => {
-          const ok = document.getElementById('form-success');
-          form.hidden = true;
-          if (ok) { ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-        })
-        .catch(() => {
-          if (btn) { btn.disabled = false; btn.textContent = 'Invia messaggio'; }
-          alert('Invio non riuscito. Riprova o chiamaci al +39 339 578 8538.');
-        });
+      const ok = document.getElementById('form-success');
+      form.hidden = true;
+      if (ok) { ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
     });
   }
 });
