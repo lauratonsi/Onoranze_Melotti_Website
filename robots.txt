@@ -1,0 +1,6 @@
+# Anteprima privata per il cliente — NON indicizzare sui motori di ricerca.
+# Quando il sito andrà LIVE sul dominio definitivo, sostituire il contenuto con:
+#   User-agent: *
+#   Allow: /
+User-agent: *
+Disallow: /
