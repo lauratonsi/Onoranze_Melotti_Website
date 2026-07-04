@@ -1,0 +1,47 @@
+# Configurazione del pannello Pages CMS (https://pagescms.org)
+# Il pannello si apre su https://app.pagescms.org — login con GitHub, nessun'altra installazione.
+
+media:
+  input: images/necrologi     # dove finiscono le foto caricate
+  output: images/necrologi     # percorso scritto nei dati
+
+content:
+  - name: necrologi
+    label: Necrologi
+    type: file
+    path: data/necrologi.json
+    fields:
+      - name: items
+        label: Necrologi (il primo in alto è il più recente)
+        type: object
+        list: true
+        fields:
+          - name: nome
+            label: Nome e cognome
+            type: string
+          - name: data
+            label: "Data (serve solo per l'ordine — NON viene mostrata sul sito)"
+            type: date
+            required: false
+          - name: sesso
+            label: Sesso
+            type: select
+            options:
+              values:
+                - { name: m, label: "Uomo — «Il caro»" }
+                - { name: f, label: "Donna — «La cara»" }
+          - name: foto
+            label: Foto della persona (verticale)
+            type: image
+          - name: manifesto
+            label: Manifesto / annuncio (facoltativo)
+            type: image
+            required: false
+          - name: luogo
+            label: Dove riposa — lascia VUOTO se è la Casa del Commiato Melotti
+            type: string
+            required: false
+          - name: luogoQuery
+            label: Indirizzo per Google Maps (facoltativo, solo se hai messo un luogo)
+            type: string
+            required: false

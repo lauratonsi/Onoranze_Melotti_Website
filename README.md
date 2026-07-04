@@ -20,8 +20,10 @@ Sito web su misura, responsive, progettato e sviluppato per un'impresa di onoran
 
 ### In evidenza
 - **Design 100% su misura** — nessun template o page builder: layout, tipografia e animazioni originali
-- **Sistema necrologi** — schede dinamiche (ritratto + manifesto completo in lightbox), link al luogo di
-  riposo, ordinamento per data — tutto gestibile da **un solo file dati** (`data/necrologi.js`)
+- **Sistema necrologi headless** — schede dinamiche (ritratto + manifesto in lightbox), link al luogo di
+  riposo, ordinamento automatico per data; contenuti **data-driven** da `data/necrologi.json`
+- **CMS senza codice** — i necrologi si gestiscono da un pannello web (**Pages CMS**) sul repository Git,
+  con **deploy automatico su Netlify** ad ogni modifica: chi aggiorna il sito non tocca file né codice
 - **Performance** — pipeline di ottimizzazione immagini (≈ 80 MB → 15 MB), font self-hosted (nessuna chiamata esterna)
 - **Integrazioni** — Google Maps (scheda attività), WhatsApp e telefono, Instagram/Facebook,
   recensioni Google/Facebook, video player inline
@@ -31,7 +33,7 @@ Sito web su misura, responsive, progettato e sviluppato per un'impresa di onoran
 - **UX** — navbar sticky che si rimpicciolisce, animazioni allo scroll, galleria a mosaico, lightbox
 
 ### Tecnologie
-`HTML5` · `CSS3` (custom properties, grid & flexbox) · `JavaScript vanilla` · `Netlify` (hosting + Forms)
+`HTML5` · `CSS3` (custom properties, grid & flexbox) · `JavaScript vanilla` · `Pages CMS` (headless, Git-based) · `Netlify` (hosting, deploy continuo da Git, Forms)
 
 ### Struttura
 ```
@@ -39,7 +41,8 @@ index.html · su-di-noi.html · casa-del-commiato.html · necrologi.html · serv
 css/style.css        stili
 fonts/               font self-hosted
 js/                  main.js · necrologi.js · gallery.js
-data/necrologi.js    dati dei necrologi (fittizi in questa demo)
+data/necrologi.json  dati dei necrologi (fittizi in questa demo)
+.pages.yml           configurazione del CMS (Pages CMS)
 images/ · media/     risorse
 ```
 
@@ -55,8 +58,10 @@ Custom, responsive website designed and developed for an Italian funeral home
 
 ### Highlights
 - **100% custom design** — no templates or page builders; bespoke layout, typography and animations
-- **Obituary system** — data-driven cards (portrait + full announcement in a lightbox),
-  resting-place links, sorting by date — all editable from a **single data file** (`data/necrologi.js`)
+- **Headless obituary system** — data-driven cards (portrait + full announcement in a lightbox),
+  resting-place links, automatic date sorting; content lives in `data/necrologi.json`
+- **No-code CMS** — obituaries are managed from a web panel (**Pages CMS**) on the Git repo,
+  with **automatic Netlify deploys** on every change: whoever updates the site never touches files or code
 - **Performance** — image optimization pipeline (≈ 80 MB → 15 MB), self-hosted fonts (no third-party calls)
 - **Integrations** — Google Maps (business listing), WhatsApp & phone, Instagram/Facebook,
   Google/Facebook reviews, inline video player
@@ -66,7 +71,7 @@ Custom, responsive website designed and developed for an Italian funeral home
 - **UX** — sticky shrinking navbar, scroll-reveal animations, responsive mosaic gallery, lightbox
 
 ### Tech stack
-`HTML5` · `CSS3` (custom properties, grid & flexbox) · `vanilla JavaScript` · `Netlify` (hosting + Forms)
+`HTML5` · `CSS3` (custom properties, grid & flexbox) · `vanilla JavaScript` · `Pages CMS` (headless, Git-based) · `Netlify` (hosting, continuous deploy from Git, Forms)
 
 ---
 

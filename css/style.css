@@ -591,14 +591,6 @@ nav.scrolled .nav-logo-img { height: 42px; }
   color: var(--primary);
   margin-bottom: 6px;
 }
-.necrologio-date {
-  font-size: 0.72rem;
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
 .necrologio-testo { font-size: 0.9rem; color: var(--gray); margin-bottom: 18px; line-height: 1.7; }
 .necrologio-riposo {
   font-family: var(--font-serif);

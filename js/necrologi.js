@@ -5,31 +5,18 @@ const CASA_COMMIATO = "Casa del Commiato Melotti";
 const ICON_MAIL = "<svg viewBox='0 0 24 24' width='13' height='13' fill='none' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='1.5'/><path d='M3.5 7l8.5 6 8.5-6'/></svg>";
 const ICON_VIEW = "<svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><path d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z'/><circle cx='12' cy='12' r='3'/></svg>";
 
-// I dati dei defunti vivono in  data/necrologi.js  (window.NECROLOGI).
-// Qui ricaviamo i percorsi immagine dallo slug e applichiamo i valori di default.
-const RITRATTI_DIR  = "images/necrologi/ritratti/";
-const MANIFESTI_DIR = "images/necrologi/";
-
+// I dati dei defunti vivono in  data/necrologi.json  (gestito dal pannello /admin).
 function normalizza(n) {
-  const slug = n.slug || "";
   return {
     nome: n.nome || "",
     sesso: n.sesso || "f",
-    dataMorte: n.dataMorte || "",
+    data: n.data || "",
     testo: n.testo || "",
     luogo: n.luogo || CASA_COMMIATO,
     luogoQuery: n.luogoQuery || "",
-    foto: n.foto || (slug ? RITRATTI_DIR + slug + ".jpg" : ""),
-    manifesto: n.manifesto || (slug ? MANIFESTI_DIR + slug + ".jpg" : "")
+    foto: n.foto || "",
+    manifesto: n.manifesto || ""
   };
-}
-
-const NECROLOGI = (window.NECROLOGI || []).map(normalizza);
-
-function formatData(iso) {
-  if (!iso) return null;
-  const [y, m, d] = iso.split('-');
-  return `${d}/${m}/${y}`;
 }
 
 function mapsUrl(luogo) {
@@ -44,8 +31,6 @@ function luogoLink(n) {
 function renderCard(n) {
   const foto = n.foto || n.manifesto || PLACEHOLDER;
   const manifesto = n.manifesto || n.foto || '';
-  const morte = formatData(n.dataMorte);
-  const dateStr = morte ? `† ${morte}` : '';
   const caro = n.sesso === 'm' ? 'Il caro' : 'La cara';
   const primoNome = n.nome.trim().split(/\s+/)[0];
   const link = luogoLink(n);
@@ -66,7 +51,6 @@ function renderCard(n) {
       </div>
       <div class="necrologio-body">
         <h3 class="necrologio-nome">${n.nome}</h3>
-        ${dateStr ? `<p class="necrologio-date">${dateStr}</p>` : ''}
         ${n.testo ? `<p class="necrologio-testo">${n.testo}</p>` : ''}
         ${riposo}
         <div class="necrologio-actions">
@@ -134,18 +118,29 @@ function initLightbox() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 }
 
-function loadNecrologi() {
+async function loadNecrologi() {
   const grid = document.getElementById('necrologi-grid');
   if (!grid) return;
 
-  let data = [...NECROLOGI];
+  let data = [];
+  try {
+    const res = await fetch('data/necrologi.json', { cache: 'no-store' });
+    const json = await res.json();
+    data = (json.items || []).map(normalizza);
+  } catch (e) {
+    grid.innerHTML = '<p class="loading">Impossibile caricare i necrologi.</p>';
+    return;
+  }
+
+  // Ordina per data (più recente in alto); chi non ha data resta nell'ordine del file.
   data.sort((a, b) => {
-    if (!a.dataMorte) return 1;
-    if (!b.dataMorte) return -1;
-    return b.dataMorte.localeCompare(a.dataMorte);
+    if (!a.data && !b.data) return 0;
+    if (!a.data) return 1;
+    if (!b.data) return -1;
+    return b.data.localeCompare(a.data);
   });
 
-  // In homepage (o dove specificato) mostra solo gli ultimi N
+  // In homepage (o dove specificato) mostra solo i primi N.
   const limit = parseInt(grid.dataset.limit, 10);
   if (limit > 0) data = data.slice(0, limit);
 

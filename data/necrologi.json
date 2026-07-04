@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "nome": "Mario Rossi",
+      "sesso": "m",
+      "data": "2024-05-12",
+      "foto": "images/necrologi/ritratti/mario-rossi.jpg",
+      "manifesto": "images/necrologi/mario-rossi.jpg"
+    },
+    {
+      "nome": "Giulia Bianchi",
+      "sesso": "f",
+      "data": "2024-04-28",
+      "foto": "images/necrologi/ritratti/giulia-bianchi.jpg",
+      "manifesto": "images/necrologi/giulia-bianchi.jpg"
+    },
+    {
+      "nome": "Antonio Ferrari",
+      "sesso": "m",
+      "data": "2024-04-15",
+      "foto": "images/necrologi/ritratti/antonio-ferrari.jpg",
+      "manifesto": "images/necrologi/antonio-ferrari.jpg"
+    },
+    {
+      "nome": "Anna Russo",
+      "sesso": "f",
+      "data": "2024-03-30",
+      "foto": "images/necrologi/ritratti/anna-russo.jpg",
+      "manifesto": "images/necrologi/anna-russo.jpg",
+      "luogo": "Cimitero di Edolo",
+      "luogoQuery": "Cimitero di Edolo BS"
+    },
+    {
+      "nome": "Luigi Esposito",
+      "sesso": "m",
+      "data": "2024-03-11",
+      "foto": "images/necrologi/ritratti/luigi-esposito.jpg",
+      "manifesto": "images/necrologi/luigi-esposito.jpg"
+    },
+    {
+      "nome": "Maria Colombo",
+      "sesso": "f",
+      "data": "2024-02-20",
+      "foto": "images/necrologi/ritratti/maria-colombo.jpg",
+      "manifesto": "images/necrologi/maria-colombo.jpg"
+    }
+  ]
+}
